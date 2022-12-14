@@ -4,6 +4,7 @@
     --tx-btn-color: #3498db;
     --tx-btn-bg: #2980B9;
     --bg-section: #B7E0FC;
+    --bg-section2: #f7f7f9;
 }
 body {
     box-sizing: border-box;
@@ -101,8 +102,8 @@ body {
     text-align: center;
 }
 .service-container{
-    background-color:var(--bg-section) ;
-    height: 700px;
+    background-color:var(--bg-section2) ;
+    height: 600px;
     margin: 40px 0;
     padding: 0 10%;
 }
@@ -120,19 +121,38 @@ body {
 .service-container  p{
     font-size: 18px;
     text-align: center;
-    color: var(--tx-btn);
 }
 .service-container .card{
-    height: 400px;
+    height: 350px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
-.service-container .card .item{
-    background-color: red;
-    border-radius: 10px;
-    border-color: var(--tx-btn);
+.circle {
+    text-align: center;
+    width: 16.3%;
+    margin-top: 30px !important;
+}
 
+.circle i {
+    width: 181px;
+    display: block;
+    height: 181px;
+    border-radius: 200px;
+}
+
+.circle i img {
+    text-align: center;
+    padding-top: 33%;
+}
+.yelldark_colo {
+    margin: 0 50px;
+}
+.yelldark_colo i {
+    background-color: #fe7506
+}
+.yell_colo i {
+    background-color: #fed806
 }
 .melengkung {
     border-radius: 10px;
