@@ -120,6 +120,7 @@ body {
 .service-container  p{
     font-size: 18px;
     text-align: center;
+    color: var(--tx-btn);
 }
 .service-container .card{
     height: 400px;
