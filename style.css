@@ -1,0 +1,138 @@
+:root{
+    --tx: #0f98f8;
+    --tx-btn: #fff; 
+    --tx-btn-color: #3498db;
+    --tx-btn-bg: #2980B9;
+    --bg-section: #B7E0FC;
+}
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Mulish', sans-serif;
+}
+.navbar {
+    background: white;
+    height: 85px;
+    display: flex;
+    padding: 0 10%;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.1);
+}
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    text-decoration: none;
+}
+
+.btn-animasi {
+    transition: all 0.1s;
+    -webkit-tratition: all 0.1s;
+}
+.btn {
+    padding: 10px 40px;
+    margin-top: 10px ;
+    border-radius: 10px;
+    float: left;
+    font-size: 20px;
+    color: var(--tx-btn);
+    text-decoration: none;
+}
+.btn-color{
+    background-color: var(--tx-btn-color);
+    border-bottom: 5px solid var(--tx-btn-bg);
+    text-shadow: 0px -2px var(--tx-btn-bg);
+}
+.btn:active{
+    transform: translate(100px, 52px);
+    -webkit-transform: translate(0px, 5px);
+    border-bottom: 1px solid;
+}
+.hero-container {
+    display: flex;
+    height: 800px;
+    padding: 0 0%;
+
+}
+.hero-container > div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.hero-container  h1 {
+    font-size: 48px;
+    margin: 15px 0;
+    color: var(--tx);
+}
+.hero-container p {
+    font-size: 18px;
+}
+.hero-container > img {
+    width: 50%;
+    align-self: right;
+}
+.about-container{
+    height: 800px;
+    margin:  100px 0;
+    display: flex;
+    padding: 0 10%;
+}
+.about-container > img{
+    width: 50%;
+    align-self: center;
+}
+.about-container > div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.about-container  h1 {
+    font-size: 48px;
+    margin: 15px 0;
+    color: var(--tx);
+}
+.about-container p{
+    font-size: 18px;
+    text-align: center;
+}
+.service-container{
+    background-color:var(--bg-section) ;
+    height: 700px;
+    margin: 40px 0;
+    padding: 0 10%;
+}
+.service-container .caption{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.service-container h1{
+    font-size: 48px;
+    color: var(--tx);
+}
+.service-container  p{
+    font-size: 18px;
+    text-align: center;
+}
+.service-container .card{
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.service-container .card .item{
+    background-color: red;
+    border-radius: 10px;
+    border-color: var(--tx-btn);
+
+}
+.melengkung {
+    border-radius: 10px;
+}
