@@ -160,22 +160,22 @@ body {
     display: flex;
     margin-top: 20px;
     padding: 0 10%;
+    
 }
 
-.down-container .div {
-    float: right;
-    margin: 5px;
+.down-container {
+    display: flex;
+    align-self: center;
 }
-.down-container h1{
-    font-size: 18px;
+
+.down-container > div {
+    width: 500%;
+    align-self: center;
 }
 
 .down-container > img{
-    width: 50%;
+    width: 500%;
     align-self: center;
 
 }
-
-
-
 
