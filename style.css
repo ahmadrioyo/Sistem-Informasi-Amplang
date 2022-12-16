@@ -216,7 +216,7 @@ float: right;
 }
 .down-container {
     display: flex;
-    padding: 0 20%;
+    padding: 0 15%;
     align-self: center;
 }
 
