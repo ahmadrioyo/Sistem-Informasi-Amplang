@@ -39,6 +39,7 @@ body {
     font-size: 20px;
     color: var(--tx-btn);
     text-decoration: none;
+    text-align: center;
 }
 .btn-color{
     background-color: var(--tx-btn-color);
@@ -235,4 +236,79 @@ float: right;
     align-self: center;
 
 }
-
+button {
+background-color: var(--tx-btn-color);
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+width: 100%;
+}
+span.psw {
+float: right;
+}
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-section);    
+}
+.login-container{
+    width: 100%;
+    display: flex;
+    max-width: 850px;
+    background: var(--bg-section2);
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);   
+}
+.login-value{
+    width: 400px;
+}
+.login-value form{
+    width: 250px;
+    margin: 60px auto;
+}
+.login-value h1{
+    margin: 20px;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.login-value hr{
+    border-top: 2px solid var(--bg-section);
+}
+.login-value p{
+    text-align: center;
+    margin: 10px;
+}
+.right img{
+    width: 450px;
+    height: 100%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.login-value > form > label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px;
+}
+.login-value > form > input {
+    width: 100%;
+    margin: 2px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--bg-section2);
+}
+.login-value > form > a{
+    padding: 8px;
+    width: 252px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
