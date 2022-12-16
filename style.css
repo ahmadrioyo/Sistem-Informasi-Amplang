@@ -312,3 +312,11 @@ float: right;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.footer-index{
+    background: var(--bg-section);
+    
+}
+
+.footer-index >p{
+    padding-bottom: 30px;
+}
