@@ -158,16 +158,20 @@ body {
 
 .down-container {
     display: flex;
-    align-self: center;
+    margin-top: 20px;
+    padding: 0 10%;
 }
 
-.down-container > div {
-    width: 500%;
-    align-self: center;
+.down-container .div {
+    float: right;
+    margin: 5px;
+}
+.down-container h1{
+    font-size: 18px;
 }
 
 .down-container > img{
-    width: 500%;
+    width: 50%;
     align-self: center;
 
 }
