@@ -314,7 +314,8 @@ float: right;
 }
 .saran-container{
     display: flex;
-    padding: 0 10%;
+    padding: 10%;
+    height: 350px;
 }
 .saran-container div{
     width: 50%;
@@ -334,28 +335,5 @@ float: right;
     border-radius: 10px;
     object-fit: cover;
     padding-left: 15%;
-    
-
-}
-.saran-container> form > label {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 5px;
-}
-.saran-container > form input {
-    width: 100%;
-    margin: 2px;
-    border: none;
-    outline: none;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--bg-section2);
-}
-.saran-container > form > a{
-    padding: 8px;
-    width: 252px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    justify-content: center;
 }
