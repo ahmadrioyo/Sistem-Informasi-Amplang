@@ -320,19 +320,22 @@ float: right;
     width: 50%;
     flex-direction: column;   
     display: block;
-    margin: 20px; 
+    margin: 10px; 
 }
-.saran-container > form{
+.saran-container form{
     display: block;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.saran-container  img{
+.saran-container img{
+    height: 300px;
     width: 50%;
-    border-radius: 15px;
+    border-radius: 10px;
     object-fit: cover;
     padding-left: 15%;
+    
+
 }
 .saran-container> form > label {
     display: block;
@@ -340,7 +343,7 @@ float: right;
     font-weight: 600;
     padding: 5px;
 }
-.saran-container > form > input {
+.saran-container > form input {
     width: 100%;
     margin: 2px;
     border: none;
