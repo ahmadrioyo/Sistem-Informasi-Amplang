@@ -320,3 +320,44 @@ float: right;
 .footer-index >p{
     padding-bottom: 30px;
 }
+.saran-container{
+    background-color:var(--bg-section2);
+    display: flex;
+    padding: 0 10%;
+    height: 600px;
+}
+.saran-container div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;   
+    margin: 10px; 
+}
+.saran-container form{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.saran-container form .form-group{
+    width: 90%;
+}
+.saran-container .img{
+    width: 50%;
+}
+.img img{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: 15px;
+}
+.button-countainer{
+    background-color: var(--tx-btn-color);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0px 120px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}  
