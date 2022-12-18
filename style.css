@@ -216,25 +216,25 @@ float: right;
 }
 .down-container {
     display: flex;
-    margin-top: 20px;
-    padding: 0 10%;
-    
-}
-
-.down-container {
-    display: flex;
+    padding: 0 15%;
     align-self: center;
 }
 
 .down-container > div {
-    width: 500%;
+    width: 50%;
     align-self: center;
 }
+.down-container > div > p{
+    font-size: 17px;
+    width: 600px;
+}
 
+.down-container > div > img{
+    width: 50px;
+    padding: 0 20px;
+}
 .down-container > img{
-    width: 500%;
-    align-self: center;
-
+    width: 50%;
 }
 button {
 background-color: var(--tx-btn-color);
@@ -312,28 +312,11 @@ float: right;
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.saran-container{
-    display: flex;
-    padding: 10%;
-    height: 350px;
+.footer-index{
+    background: var(--bg-section);
+    
 }
-.saran-container div{
-    width: 50%;
-    flex-direction: column;   
-    display: block;
-    margin: 10px; 
-}
-.saran-container form{
-    display: block;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.saran-container img{
-    height: 300px;
-    width: 50%;
-    border-radius: 10px;
-    object-fit: cover;
-    padding-left: 15%;
-    justify-content: center;
+
+.footer-index >p{
+    padding-bottom: 30px;
 }
