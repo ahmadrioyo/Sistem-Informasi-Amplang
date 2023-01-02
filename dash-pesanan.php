@@ -30,11 +30,11 @@ $sesName = $_SESSION['fullname'];
         </div>
         <div class="menu-items">
             <ul class="nav-link">
-                <li><a href="dashboard.html">
+                <li><a href="dashboard.php">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Beranda</span>
                 </a></li>
-                <li><a href="dash-pesanan.php">
+                <li><a href="dash-pesanan.php"> 
                     <i class="uil uil-shopping-bag"></i>
                     <span class="link-name">Pesanan</span>
                 </a></li>
@@ -82,34 +82,9 @@ $sesName = $_SESSION['fullname'];
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <i class="uil uil-tachometer-fast"></i>
-                    <span class="text">Beranda</span>
+                    <i class="uil uil-shopping-bag"></i>
+                    <span class="text">Pesanan</span>
                 </div>
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-wallet"></i>
-                        <span class="text">Pendapatan Hari ini</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-shopping-cart-alt"></i>
-                        <span class="text">Total Pesanan</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-usd-circle"></i>
-                        <span class="text">Saldo</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Trasaksi terbaru</span>
-                </div>
-                <div class="activity-data">
                 <table class="content-table">
                     <thead>
                     <tr>

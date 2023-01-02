@@ -35,7 +35,7 @@ $sesName = $_SESSION['fullname'];
                     <span class="link-name">Beranda</span>
                 </a></li>
                 <li><a href="dash-pesanan.php">
-                    <i class="uil uil-shopping-bag"></i>
+                    <i class="uil uil-files-landscapes-alt"></i>
                     <span class="link-name">Pesanan</span>
                 </a></li>
                 <li><a href="dash-stok.php">
@@ -82,61 +82,34 @@ $sesName = $_SESSION['fullname'];
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <i class="uil uil-tachometer-fast"></i>
-                    <span class="text">Beranda</span>
+                    <i class="uil uil-box"></i>
+                    <span class="text">Daftar Produk</span>
                 </div>
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-wallet"></i>
-                        <span class="text">Pendapatan Hari ini</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-shopping-cart-alt"></i>
-                        <span class="text">Total Pesanan</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-usd-circle"></i>
-                        <span class="text">Saldo</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Trasaksi terbaru</span>
-                </div>
-                <div class="activity-data">
                 <table class="content-table">
                     <thead>
                     <tr>
                         <td><p>No. </p></td>
-                        <td><p>ID Pesanan</p></td>
+                        <td><p>ID Produk</p></td>
                         <td><p>ID Admin</p></td>
-                        <td><p>Nama</p></td>
-                        <td><p>Nomer Handphone</p></td>
-                        <td><p>Jumlah</p></td>
-                        <td><p>Total Harga</p></td,magic_quotes_runtime>
-                        <td><p>Status Pembayaran</p></td>
-                        <td><p>Konfirmasi</p></td>
+                        <td><p>Nama Produk</p></td>
+                        <td><p>Harga Produk</p></td>
+                        <td><p>Di Buat tanggal</p></td>
+                        <td><p>Di Ubah tanggal</p></td>
+                        <td><p></p></td>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                        $query = "SELECT * FROM pesanan";
+                        $query = "SELECT * FROM produk";
                         $result = mysqli_query($koneksi, $query);
                         $no = 1;
                         while($row = mysqli_fetch_array($result)){
-                            $id_pesanan = $row['id_pesanan']; 
+                            $id_pesanan = $row['id_produk']; 
                             $sesID = $row['id_admin']; 
-                            $nama = $row['nama_pembeli']; 
-                            $no_hp = $row['no_hp_pembeli']; 
-                            $jml = $row['jumlah']; 
-                            $ttl = $row['grand_total'];
-                            $st = $row['status']; 
+                            $nama = $row['nama_produk']; 
+                            $no_hp = $row['harga_produk']; 
+                            $jml = $row['created_at']; 
+                            $ttl = $row['updated_at'];
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>
@@ -146,11 +119,9 @@ $sesName = $_SESSION['fullname'];
                         <td><?php echo $no_hp; ?></td>
                         <td><?php echo $jml; ?></td>
                         <td><?php echo $ttl; ?></td>
-                        <td><?php echo $st; ?></td>
                         <td>
-                            <a class="btn btn-animasi btn-color" href="edit.php?id_pesanan=<?php echo $row['id_pesanan'] ?>"><i class="uil uil-check"></i></a>
-                            <br>
-                            <a class="btn btn-animasi btn-color" href="hapus.php?id=<?php echo $row['id_pesanan']?>"><i class="uil uil-trash-alt"></i></i></a>
+                            <a href="edit.php?id_produk=<?php echo $row['id_produk'] ?>">Edit</a>
+                            <a href="hapus.php?id=<?php echo $row['id_pesanan']?>">hapus</a>
                         </td>
                     </tr>
                     <?php
@@ -159,6 +130,8 @@ $sesName = $_SESSION['fullname'];
                     ?>
                     </tbody>
                 </table>
+                <div>
+                    <a href="" class="btn btn-animasi btn-color">Tambahkan Produk <i class="uil uil-plus-circle"></i></a>
                 </div>
             </div>
         </div>

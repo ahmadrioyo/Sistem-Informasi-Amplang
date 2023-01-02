@@ -1,29 +1,27 @@
 <?php
 require ('koneksi.php');
-
 session_start();
 
-if( isset($_POST['submit'])){
-	$email = $_POST['txt_email'];
-	$pass = $_POST['txt_pass'];
-
+if( isset($_POST['masuk'])){
+	$email = $_POST['email'];
+	$pass = $_POST['pass'];
 
 	if(!empty(trim($email)) && !empty(trim($pass))){
-		$query = "SELECT * FROM user_detail WHERE user_email = '$email'";
+		$query = "SELECT * FROM admin_detail WHERE email = '$email'";
 		$result = mysqli_query($koneksi, $query);
 		$num = mysqli_num_rows($result);
 
 		while($row = mysqli_fetch_array($result)){
-			$id = $row['id'];
-			$userVal = $row['user_email'];
-			$passVal = $row['user_password'];
-			$userName = $row['user_fullname'];
+			$id = $row['id_admin'];
+			$userVal = $row['email'];
+			$passVal = $row['password'];
+			$userName = $row['fullname'];
 		}
 		if ($num != 0){
 			if($userVal==$email && $passVal==$pass){
-				$_SESSION['id']=$id;
-				$_SESSION['name']=$userName;
-				header('Location: index.php');
+                $_SESSION['id_admin'] = $id;
+                $_SESSION['fullname'] = $userName;
+				header('Location: dashboard.php');
 			}else{
 				$error = 'user atau password salah!!';
 				header('Location: login.php');
@@ -56,11 +54,11 @@ if( isset($_POST['submit'])){
                 <h1>Masuk</h1>
                 <hr>
                 <p>UD. RAR Crackers</p>
-                <label for="">Email</label>
-                <input type="text" placeholder="contoh@gmail.com" name="email" value="<?php echo $email; ?>" required>
-                <label for="">Kata Sandi</label>
-                <input type="password" placeholder="Kata Sandi" name="password" value="<?php echo $_POST['password']; ?>" required>    
-                <a href="" class="btn btn-animasi btn-color" name="submit" >Masuk</a>
+                <label for="email">Email</label>
+                <input type="text" placeholder="ahmad@polije.com" name="email" id="email">
+                <label for="pass">Kata Sandi</label>
+                <input type="password" placeholder="Kata Sandi" name="pass" id="pass">    
+                <button type="submit" class="btn btn-animasi btn-color" name="masuk"  >Masuk</button>
                 <p>Apakah anda lupa Kata Sandi anda?&nbsp;<a href="">Lupa Kata Sandi !</a></p>
             </form>
         </div>

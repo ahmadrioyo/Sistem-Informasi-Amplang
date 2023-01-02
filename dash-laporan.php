@@ -35,7 +35,7 @@ $sesName = $_SESSION['fullname'];
                     <span class="link-name">Beranda</span>
                 </a></li>
                 <li><a href="dash-pesanan.php">
-                    <i class="uil uil-shopping-bag"></i>
+                    <i class="uil uil-files-landscapes-alt"></i>
                     <span class="link-name">Pesanan</span>
                 </a></li>
                 <li><a href="dash-stok.php">
@@ -110,55 +110,41 @@ $sesName = $_SESSION['fullname'];
                     <span class="text">Trasaksi terbaru</span>
                 </div>
                 <div class="activity-data">
-                <table class="content-table">
-                    <thead>
-                    <tr>
-                        <td><p>No. </p></td>
-                        <td><p>ID Pesanan</p></td>
-                        <td><p>ID Admin</p></td>
-                        <td><p>Nama</p></td>
-                        <td><p>Nomer Handphone</p></td>
-                        <td><p>Jumlah</p></td>
-                        <td><p>Total Harga</p></td,magic_quotes_runtime>
-                        <td><p>Status Pembayaran</p></td>
-                        <td><p>Konfirmasi</p></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $query = "SELECT * FROM pesanan";
-                        $result = mysqli_query($koneksi, $query);
-                        $no = 1;
-                        while($row = mysqli_fetch_array($result)){
-                            $id_pesanan = $row['id_pesanan']; 
-                            $sesID = $row['id_admin']; 
-                            $nama = $row['nama_pembeli']; 
-                            $no_hp = $row['no_hp_pembeli']; 
-                            $jml = $row['jumlah']; 
-                            $ttl = $row['grand_total'];
-                            $st = $row['status']; 
-                    ?>
-                    <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $id_pesanan; ?></td>
-                        <td><?php echo $sesID; ?></td>
-                        <td><?php echo $nama; ?></td>
-                        <td><?php echo $no_hp; ?></td>
-                        <td><?php echo $jml; ?></td>
-                        <td><?php echo $ttl; ?></td>
-                        <td><?php echo $st; ?></td>
-                        <td>
-                            <a class="btn btn-animasi btn-color" href="edit.php?id_pesanan=<?php echo $row['id_pesanan'] ?>"><i class="uil uil-check"></i></a>
-                            <br>
-                            <a class="btn btn-animasi btn-color" href="hapus.php?id=<?php echo $row['id_pesanan']?>"><i class="uil uil-trash-alt"></i></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                    $no++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                    <div class="data names">
+                        <span class="data-title">Name</span>
+                        <span class="data-list">Prem sahi</span>
+                        <span class="data-list">Prem sahi</span>
+                        <span class="data-list">Prem sahi</span>
+                        <span class="data-list">Prem sahi</span>
+                    </div>
+                    <div class="data email">
+                        <span class="data-title">Email</span>
+                        <span class="data-list">sahi@gmail.com</span>
+                        <span class="data-list">sahi@gmail.com</span>
+                        <span class="data-list">sahi@gmail.com</span>
+                        <span class="data-list">sahi@gmail.com</span>
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Joined</span>
+                        <span class="data-list">2022-02-12</span>
+                        <span class="data-list">2022-02-12</span>
+                        <span class="data-list">2022-02-12</span>
+                        <span class="data-list">2022-02-12</span>
+                    </div>
+                    <div class="data status">
+                        <span class="data-title">Type</span>
+                        <span class="data-list">New</span>
+                        <span class="data-list">New</span>
+                        <span class="data-list">New</span>
+                        <span class="data-list">New</span>
+                    </div>
+                    <div class="data status">
+                        <span class="data-title">Status</span>
+                        <span class="data-list">Liked</span>
+                        <span class="data-list">Liked</span>
+                        <span class="data-list">Liked</span>
+                        <span class="data-list">Liked</span>
+                    </div>
                 </div>
             </div>
         </div>
