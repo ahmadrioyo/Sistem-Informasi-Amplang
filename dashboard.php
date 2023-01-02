@@ -7,6 +7,18 @@ if(!isset($_SESSION['id_admin'])){
 }
 $sesID = $_SESSION['id_admin'];
 $sesName = $_SESSION['fullname'];
+$query = "SELECT * FROM pesanan ORDER BY id_pesanan DESC";
+$result = mysqli_query($koneksi, $query);
+$no = 1;
+while($row = mysqli_fetch_array($result)){
+$id_pesanan = $row['id_pesanan']; 
+$sesID = $row['id_admin']; 
+$nama = $row['nama_pembeli']; 
+$no_hp = $row['no_hp_pembeli']; 
+$jml = $row['jumlah']; 
+$ttl = $row['grand_total'];
+$st = $row['status_bayar']; 
+}   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,20 +98,45 @@ $sesName = $_SESSION['fullname'];
                     <span class="text">Beranda</span>
                 </div>
                 <div class="boxes">
-                    <div class="box box1">
+                    <div class="box box1">  
                         <i class="uil uil-wallet"></i>
                         <span class="text">Pendapatan Hari ini</span>
-                        <span class="number">50,120</span>
+                        <span class="number">
+                            Rp. <?php
+                            $query = "SELECT SUM(grand_total) FROM pesanan WHERE status_bayar='Lunas';";
+                            $hasil = mysqli_query($koneksi, $query);
+                            while ($row = $hasil->fetch_assoc()) {
+                            echo $row['SUM(grand_total)']."<br>";
+                            }
+                        ?>
+                        </span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-shopping-cart-alt"></i>
                         <span class="text">Total Pesanan</span>
-                        <span class="number">50,120</span>
+                        <span class="number">
+                            <?php
+                            $query = "SELECT SUM(jumlah) FROM pesanan;";
+                            $hasil = mysqli_query($koneksi, $query);
+                            while ($row = $hasil->fetch_assoc()) {
+                            echo $row['SUM(jumlah)']."<br>";
+                            }
+                            ?>
+                        </span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-usd-circle"></i>
-                        <span class="text">Saldo</span>
-                        <span class="number">50,120</span>
+                        <span class="text">Pendapatan</span>
+                        <span class="number">
+                            Rp. 
+                        <?php
+                            $query = "SELECT SUM(grand_total) FROM pesanan;";
+                            $hasil = mysqli_query($koneksi, $query);
+                            while ($row = $hasil->fetch_assoc()) {
+                            echo $row['SUM(grand_total)']."<br>";
+                            }
+                        ?>
+                        </span>
                     </div>
                     
                 </div>
@@ -113,7 +150,6 @@ $sesName = $_SESSION['fullname'];
                 <table class="content-table">
                     <thead>
                     <tr>
-                        <td><p>No. </p></td>
                         <td><p>ID Pesanan</p></td>
                         <td><p>ID Admin</p></td>
                         <td><p>Nama</p></td>
@@ -121,14 +157,12 @@ $sesName = $_SESSION['fullname'];
                         <td><p>Jumlah</p></td>
                         <td><p>Total Harga</p></td,magic_quotes_runtime>
                         <td><p>Status Pembayaran</p></td>
-                        <td><p>Konfirmasi</p></td>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                        $query = "SELECT * FROM pesanan";
+                        $query = "SELECT * FROM pesanan  ORDER BY id_pesanan DESC";
                         $result = mysqli_query($koneksi, $query);
-                        $no = 1;
                         while($row = mysqli_fetch_array($result)){
                             $id_pesanan = $row['id_pesanan']; 
                             $sesID = $row['id_admin']; 
@@ -136,10 +170,9 @@ $sesName = $_SESSION['fullname'];
                             $no_hp = $row['no_hp_pembeli']; 
                             $jml = $row['jumlah']; 
                             $ttl = $row['grand_total'];
-                            $st = $row['status']; 
+                            $st = $row['status_bayar']; 
                     ?>
                     <tr>
-                        <td><?php echo $no; ?></td>
                         <td><?php echo $id_pesanan; ?></td>
                         <td><?php echo $sesID; ?></td>
                         <td><?php echo $nama; ?></td>
@@ -147,11 +180,6 @@ $sesName = $_SESSION['fullname'];
                         <td><?php echo $jml; ?></td>
                         <td><?php echo $ttl; ?></td>
                         <td><?php echo $st; ?></td>
-                        <td>
-                            <a class="btn btn-animasi btn-color" href="edit.php?id_pesanan=<?php echo $row['id_pesanan'] ?>"><i class="uil uil-check"></i></a>
-                            <br>
-                            <a class="btn btn-animasi btn-color" href="hapus.php?id=<?php echo $row['id_pesanan']?>"><i class="uil uil-trash-alt"></i></i></a>
-                        </td>
                     </tr>
                     <?php
                     $no++;

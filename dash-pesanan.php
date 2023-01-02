@@ -111,7 +111,7 @@ $sesName = $_SESSION['fullname'];
                             $no_hp = $row['no_hp_pembeli']; 
                             $jml = $row['jumlah']; 
                             $ttl = $row['grand_total'];
-                            $st = $row['status']; 
+                            $st = $row['status_bayar']; 
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>

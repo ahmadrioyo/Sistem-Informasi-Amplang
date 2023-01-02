@@ -12,7 +12,7 @@ while ($row = mysqli_fetch_array($result)) {
     $no_hp = $row['no_hp_pembeli']; 
     $jml = $row['jumlah']; 
     $ttl = $row['grand_total'];
-    $st = $row['status']; 
+    $st = $row['status_bayar']; 
 }
 if( isset($_POST['submit']) ){
     $id_pesanan = $row['id_pesanan']; 
@@ -23,7 +23,7 @@ if( isset($_POST['submit']) ){
     $ttl = $row['grand_total'];
     $st = $row['status']; 
     $query = "UPDATE pesanan SET 
-    id_admin ='$sesID', nama_pembeli ='$nama', no_hp_pembeli ='$no_hp', jumlah =$jml ,grand_total =$ttl , status ='$st' WHERE id_pesanan ='$id_pesanan'";
+    id_admin ='$sesID', nama_pembeli ='$nama', no_hp_pembeli ='$no_hp', jumlah =$jml ,grand_total =$ttl , status_bayar ='$st' WHERE id_pesanan ='$id_pesanan'";
     $result = mysqli_query($koneksi, $query);
     header('Location: dash-pesanan.php');
 }
