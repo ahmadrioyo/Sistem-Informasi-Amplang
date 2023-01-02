@@ -30,7 +30,7 @@ $sesName = $_SESSION['fullname'];
         </div>
         <div class="menu-items">
             <ul class="nav-link">
-                <li><a href="dashboard.html">
+                <li><a href="dashboard.php">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Beranda</span>
                 </a></li>
@@ -82,71 +82,52 @@ $sesName = $_SESSION['fullname'];
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <i class="uil uil-tachometer-fast"></i>
-                    <span class="text">Beranda</span>
+                    <i class="uil uil-file-bookmark-alt"></i>
+                    <span class="text">Laporan</span>
                 </div>
                 <div class="boxes">
-                    <div class="box box1">
+                <div class="box box1">  
                         <i class="uil uil-wallet"></i>
-                        <span class="text">Pendapatan Hari ini</span>
-                        <span class="number">50,120</span>
+                        <a href="" style="text-decoration: none; color:black;"><span class="text">Total Pendapatan</span></a>
+                        <span class="number">
+                            Rp. <?php
+                            $query = "SELECT SUM(grand_total) FROM pesanan;";
+                            $hasil = mysqli_query($koneksi, $query);
+                            while ($row = $hasil->fetch_assoc()) {
+                            echo $row['SUM(grand_total)']."<br>";
+                            }
+                        ?>
+                        </span>
                     </div>
                     <div class="box box2">
-                        <i class="uil uil-shopping-cart-alt"></i>
-                        <span class="text">Total Pesanan</span>
-                        <span class="number">50,120</span>
+                        <i class="uil uil-box"></i>
+                        <a href="" style="text-decoration: none; color:black;"><span class="text">Total Produk Terjual \ Kg</span></a>
+                        <span class="number">
+                            <?php
+                            $query = "SELECT SUM(jumlah) FROM pesanan;";
+                            $hasil = mysqli_query($koneksi, $query);
+                            while ($row = $hasil->fetch_assoc()) {
+                            echo $row['SUM(jumlah)']."<br>";
+                            }
+                            ?>
+                        </span>
                     </div>
                     <div class="box box3">
-                        <i class="uil uil-usd-circle"></i>
-                        <span class="text">Saldo</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Trasaksi terbaru</span>
-                </div>
-                <div class="activity-data">
-                    <div class="data names">
-                        <span class="data-title">Name</span>
-                        <span class="data-list">Prem sahi</span>
-                        <span class="data-list">Prem sahi</span>
-                        <span class="data-list">Prem sahi</span>
-                        <span class="data-list">Prem sahi</span>
-                    </div>
-                    <div class="data email">
-                        <span class="data-title">Email</span>
-                        <span class="data-list">sahi@gmail.com</span>
-                        <span class="data-list">sahi@gmail.com</span>
-                        <span class="data-list">sahi@gmail.com</span>
-                        <span class="data-list">sahi@gmail.com</span>
-                    </div>
-                    <div class="data joined">
-                        <span class="data-title">Joined</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Type</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">New</span>
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Status</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
+                        <i class="uil uil-exchange-alt"></i>
+                        <a href="" style="text-decoration: none; color:black;"><span class="text">Total Transaksi</span></a>
+                        <span class="number">
+                        <?php
+                            $query = "SELECT COUNT(id_pesanan)
+                            FROM pesanan;";
+                            $hasil = mysqli_query($koneksi, $query);
+                            while ($row = $hasil->fetch_assoc()) {
+                            echo $row['COUNT(id_pesanan)']."<br>";
+                            }
+                            ?>
+                        </span>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </section>
     <script src="script.js"></script>

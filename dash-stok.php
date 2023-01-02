@@ -95,7 +95,6 @@ $sesName = $_SESSION['fullname'];
                         <td><p>Harga Produk</p></td>
                         <td><p>Di Buat tanggal</p></td>
                         <td><p>Di Ubah tanggal</p></td>
-                        <td><p></p></td>
                     </tr>
                     </thead>
                     <tbody>
@@ -119,10 +118,6 @@ $sesName = $_SESSION['fullname'];
                         <td><?php echo $no_hp; ?></td>
                         <td><?php echo $jml; ?></td>
                         <td><?php echo $ttl; ?></td>
-                        <td>
-                            <a href="edit.php?id_produk=<?php echo $row['id_produk'] ?>">Edit</a>
-                            <a href="hapus.php?id=<?php echo $row['id_pesanan']?>">hapus</a>
-                        </td>
                     </tr>
                     <?php
                     $no++;

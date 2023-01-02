@@ -42,7 +42,7 @@ $st = $row['status_bayar'];
         </div>
         <div class="menu-items">
             <ul class="nav-link">
-                <li><a href="dashboard.html">
+                <li><a href="dashboard.php">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Beranda</span>
                 </a></li>
@@ -86,7 +86,7 @@ $st = $row['status_bayar'];
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Cari...">
             </div>
-            <div>
+            <div class="tittle">
             <h3>Selamat Datang</h3><p><?php echo $sesName; ?></p>
             </div>
             <img src="icon/user.svg" alt="">
@@ -126,11 +126,11 @@ $st = $row['status_bayar'];
                     </div>
                     <div class="box box3">
                         <i class="uil uil-usd-circle"></i>
-                        <span class="text">Pendapatan</span>
+                        <span class="text">Piutang Konsumen</span>
                         <span class="number">
                             Rp. 
-                        <?php
-                            $query = "SELECT SUM(grand_total) FROM pesanan;";
+                            <?php
+                            $query = "SELECT SUM(grand_total) FROM pesanan WHERE status_bayar='Belum Lunas';";
                             $hasil = mysqli_query($koneksi, $query);
                             while ($row = $hasil->fetch_assoc()) {
                             echo $row['SUM(grand_total)']."<br>";

@@ -23,16 +23,15 @@ if( isset($_POST['masuk'])){
                 $_SESSION['fullname'] = $userName;
 				header('Location: dashboard.php');
 			}else{
-				$error = 'user atau password salah!!';
+				echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
 				header('Location: login.php');
 			}
 		}else{
-			$error = 'user tidak ditemukan!!';
+			echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
 			header('Location: login.php');
 		}
 	}else{
-		$error = 'data tidak boleh kosong';
-		echo $error;
+		echo "<script>alert('Data tidak boleh kosong!')</script>";
 	}
 } 
 ?>

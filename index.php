@@ -1,15 +1,4 @@
 <?php
-require('koneksi.php');
-if(isset($_POST['kirim'])){
-    $userName = $_POST['nama'];
-    $userMail = $_POST['email'];
-    $userNo = $_POST['no'];
-    $message = $_POST['pesan'];
-
-    $query = "INSERT INTO hubungi_kami VALUES('','$userName','$userMail','$userNo','$message')";
-    $result = mysqli_query($koneksi, $query);
-    header('Location: index.php');
-}
 include 'koneksi.php';
 $query = mysqli_query($koneksi, "SELECT max(id_pesanan) as kodeTerbesar FROM pesanan");
 $data = mysqli_fetch_array($query);
@@ -60,6 +49,7 @@ $kodeBarang = $huruf . sprintf("%08s", $urutan);
                             <input type="text" placeholder="Jumlah / kg" name="jumlah" onFocus="startCalc();" onBlur="stopCalc();" required>
                             <p>Rp. <input type="text" name="total" value="0" readonly required></p>
                         <button type="submit" name="pesan">Pesan</button>
+                        
                         </form>
                     </div>
                 </div>
