@@ -5,12 +5,12 @@ session_start();
 if (!isset($_SESSION['id_admin'])) {
     header('Location: login.php');
 }
-$query = mysqli_query($koneksi, "SELECT max(id_pesanan) as kodeTerbesar FROM pesanan");
+$query = mysqli_query($koneksi, "SELECT max(id_karyawan) as kodeTerbesar FROM karyawan");
 $data = mysqli_fetch_array($query);
 $kodeBarang = $data['kodeTerbesar'];
 $urutan = (int) substr($kodeBarang, 8, 8);
 $urutan++;
-$huruf = "KAR   ";
+$huruf = "KAR";
 $kodeBarang = $huruf . sprintf("%08s", $urutan);
 if(isset($_POST['submit'])){
     $id = $_POST['id'];
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
     $amt = $_POST['alamat'];
     $userNo = $_POST['no_hp'];
 
-    $query = "INSERT INTO `karyawan` VALUES ('$id', '$userName', $amt ,'$userNo')";
+    $query = "INSERT INTO `karyawan` VALUES ('$id','$userName', '$amt' ,'$userNo')";
     $result = mysqli_query($koneksi, $query);
     header('Location: dash-karyawan.php');
 }
@@ -89,14 +89,9 @@ $sesName = $_SESSION['fullname'];
     </nav>
     <section class="dashboard-body">
         <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Cari...">
-            </div>
+        <i class="uil uil-bars sidebar-toggle"></i>
             <div>
-                <h3>Selamat Datang</h3>
-                <p><?php echo $sesName; ?></p>
+                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
             </div>
             <img src="icon/user.svg" alt="">
         </div>
@@ -106,95 +101,8 @@ $sesName = $_SESSION['fullname'];
                     <i class="uil uil-constructor"></i>
                     <span class="text">Karyawan / Tambah Karyawan</span>
                 </div>
-                <div class="boxes">
-                    <div class="box box1">
-                        <?php
-                        $query = "SELECT * FROM karyawan WHERE id_karyawan='KAR00000001'";
-                        $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $id_karyawan = $row['id_karyawan'];
-                            $nama = $row['nama_karyawan'];
-                            $alamat = $row['alamat_karyawan'];
-                            $no_hp = $row['no_hp_karyawan'];
-                        ?>
-                            <i class="uil uil-constructor"></i>
-                            <span class="text">
-                                <a href="" style="text-decoration: none; color:black;"><h3><?php echo $nama; ?></h3></a>
-                            </span>
-                        <?php
-                        } ?>
-                    </div>
-                    <div class="box box1">
-                        <?php
-                        $query = "SELECT * FROM karyawan WHERE id_karyawan='KAR00000002'";
-                        $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $id_karyawan = $row['id_karyawan'];
-                            $nama = $row['nama_karyawan'];
-                            $alamat = $row['alamat_karyawan'];
-                            $no_hp = $row['no_hp_karyawan'];
-                        ?>
-                            <i class="uil uil-constructor"></i>
-                            <span class="text">
-                                <a href="" style="text-decoration: none; color:black;"><h3><?php echo $nama; ?></h3></a>
-                            </span>
-                        <?php
-                        } ?>
-                    </div>
-                    <div class="box box1">
-                        <?php
-                        $query = "SELECT * FROM karyawan WHERE id_karyawan='KAR00000003'";
-                        $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $id_karyawan = $row['id_karyawan'];
-                            $nama = $row['nama_karyawan'];
-                            $alamat = $row['alamat_karyawan'];
-                            $no_hp = $row['no_hp_karyawan'];
-                        ?>
-                            <i class="uil uil-constructor"></i>
-                            <span class="text">
-                                <a href="" style="text-decoration: none; color:black;"><h3><?php echo $nama; ?></h3></a>
-                            </span>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
-                <table class="content-table">
-                    <thead>
-                    <tr>
-                        <td><p>No. </p></td>
-                        <td><p>ID Karyawan</p></td>
-                        <td><p>Nama Karyawan</p></td>
-                        <td><p>Alamat Karyawan</p></td>
-                        <td><p>Nomer Handphone Karyawan</p></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $query = "SELECT * FROM karyawan";
-                        $result = mysqli_query($koneksi, $query);
-                        $no = 1;
-                        while($row = mysqli_fetch_array($result)){
-                            $id_karyawan = $row['id_karyawan']; 
-                            $nama = $row['nama_karyawan']; 
-                            $alamat = $row['alamat_karyawan']; 
-                            $no_hp = $row['no_hp_karyawan']; 
-                    ?>
-                    <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $id_karyawan; ?></td>
-                        <td><?php echo $nama; ?></td>
-                        <td><?php echo $alamat; ?></td>
-                        <td><?php echo $no_hp; ?></td>
-                    </tr>
-                    <?php
-                    $no++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
-                <form action="">
-                    <input type="hidden" value="<?php echo $kodeBarang ?>" name="id" id="">
+                <form action="tambahkaryawan.php" method="POST">
+                    <input type="hidden" value="<?php echo $kodeBarang ?>" name="id" required>
                     <h3>Nama Karyawan <input type="text" name="nama" required></h3>
                     <h3>Alamat Karyawan <input type="text" name="alamat" required></h3>
                     <h3>Nomor Handphone Karyawan <input type="text" name="no_hp" required></h3>

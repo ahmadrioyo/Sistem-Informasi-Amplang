@@ -81,13 +81,9 @@ $st = $row['status_bayar'];
     </nav>
     <section class="dashboard-body">
         <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Cari...">
-            </div>
-            <div class="tittle">
-            <h3>Selamat Datang</h3><p><?php echo $sesName; ?></p>
+        <i class="uil uil-bars sidebar-toggle"></i>
+            <div>
+                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
             </div>
             <img src="icon/user.svg" alt="">
         </div>

@@ -1,9 +1,27 @@
 <?php
-require ("koneksi.php");
+require("koneksi.php");
 session_start();
-
-if(!isset($_SESSION['id_admin'])){
+$sesID = $_SESSION['id_admin'];
+$sesName = $_SESSION['fullname'];
+if (!isset($_SESSION['id_admin'])) {
     header('Location: login.php');
+}
+$query = mysqli_query($koneksi, "SELECT max(id_karyawan) as kodeTerbesar FROM karyawan");
+$data = mysqli_fetch_array($query);
+$kodeBarang = $data['kodeTerbesar'];
+$urutan = (int) substr($kodeBarang, 8, 8);
+$urutan++;
+$huruf = "PAO";
+$kodeBarang = $huruf . sprintf("%08s", $urutan);
+if(isset($_POST['submit'])){
+    $id = $_POST['id'];
+    $sesID = $_POST['ida'];
+    $userName = $_POST['nama'];
+    $amt = $_POST['alamat'];
+
+    $query = "INSERT INTO `produk` VALUES ('$id','$sesID','$userName', '$amt', current_timestamp(), current_timestamp())";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: dash-stok.php');
 }
 $sesID = $_SESSION['id_admin'];
 $sesName = $_SESSION['fullname'];
@@ -79,57 +97,15 @@ $sesName = $_SESSION['fullname'];
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-box"></i>
-                    <span class="text">Daftar Produk</span>
+                    <span class="text">Daftar Produk / Tambah Produk</span>
                 </div>
-                <table class="content-table">
-                    <thead>
-                    <tr>
-                        <td><p>No. </p></td>
-                        <td><p>ID Produk</p></td>
-                        <td><p>ID Admin</p></td>
-                        <td><p>Nama Produk</p></td>
-                        <td><p>Harga Produk</p></td>
-                        <td><p>Di Buat tanggal</p></td>
-                        <td><p>Di Ubah tanggal</p></td>
-                        <td>Ubah</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $query = "SELECT * FROM produk";
-                        $result = mysqli_query($koneksi, $query);
-                        $no = 1;
-                        while($row = mysqli_fetch_array($result)){
-                            $id_produk = $row['id_produk']; 
-                            $sesID = $row['id_admin']; 
-                            $nama = $row['nama_produk']; 
-                            $no_hp = $row['harga_produk']; 
-                            $jml = $row['created_at']; 
-                            $ttl = $row['updated_at'];
-                    ?>
-                    <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $id_produk; ?></td>
-                        <td><?php echo $sesID; ?></td>
-                        <td><?php echo $nama; ?></td>
-                        <td><?php echo $no_hp; ?></td>
-                        <td><?php echo $jml; ?></td>
-                        <td><?php echo $ttl; ?></td>
-                        <td>
-                            <a class="btn btn-animasi btn-color" href="editproduk.php?id_produk=<?php echo $row['id_produk'] ?>"><i class="uil uil-cog"></i><br></a>
-                            <br>
-                            <a class="btn btn-animasi btn-color" href="hapusstok.php?id_produk=<?php echo $row['id_produk']?>"><i class="uil uil-trash-alt"></i></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                    $no++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
-                <div>
-                    <a href="tambahproduk.php" class="btn btn-animasi btn-color">Tambahkan Produk <i class="uil uil-plus-circle"></i></a>
-                </div>
+                <form action="tambahproduk.php" method="POST">
+                    <input type="hidden" value="<?php echo $kodeBarang ?>" name="id" required>
+                    <input type="hidden" value="<?php echo $sesID ?>" name="ida" id=""></h3>
+                    <h3>Nama Produk : <input type="text" name="nama" required></h3>
+                    <h3>Harga Produk : <input type="text" name="alamat" required></h3>
+                    <button class="btn btn-animasi btn-color" type="submit" name="submit">Tambah Produk  <i class="uil uil-plus-circle"></i></button>
+                </form>
             </div>
         </div>
     </section>

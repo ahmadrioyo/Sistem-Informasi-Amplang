@@ -58,7 +58,6 @@ if( isset($_POST['masuk'])){
                 <label for="pass">Kata Sandi</label>
                 <input type="password" placeholder="Kata Sandi" name="pass" id="pass">    
                 <button type="submit" class="btn btn-animasi btn-color" name="masuk"  >Masuk</button>
-                <p>Apakah anda lupa Kata Sandi anda?&nbsp;<a href="">Lupa Kata Sandi !</a></p>
             </form>
         </div>
         <div class="right">

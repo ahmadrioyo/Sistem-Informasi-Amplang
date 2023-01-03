@@ -1,10 +1,28 @@
 <?php
-require ("koneksi.php");
 session_start();
-
-if(!isset($_SESSION['id_admin'])){
-    header('Location: login.php');
-}
+require('koneksi.php');
+if( isset($_POST['update']) ){
+    $id_produk = $_POST['id_produk']; 
+    $sesID = $_POST['id_admin']; 
+    $nama = $_POST['nama_produk']; 
+    $no_hp = $_POST['harga_produk']; 
+    $jml = $_POST['created_at']; 
+    $ttl = $_POST['updated_at'];
+    $query = "UPDATE produk SET 
+    id_admin ='$sesID', nama_produk ='$nama', harga_produk ='$no_hp', created_at ='$jml' ,updated_at ='$ttl' WHERE id_produk ='$id_produk'";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: dash-stok.php');
+    }
+$id_produk = $_GET['id_produk'];  
+$query = "SELECT * FROM produk WHERE id_produk='$id_produk'";
+$result = mysqli_query($koneksi, $query)or die(mysqli_errno($koneksi));
+while ($row = mysqli_fetch_array($result)) {
+    $id_produk = $row['id_produk']; 
+    $sesID = $row['id_admin']; 
+    $nama = $row['nama_produk']; 
+    $no_hp = $row['harga_produk']; 
+    $jml = $row['created_at']; 
+    $ttl = $row['updated_at'];
 $sesID = $_SESSION['id_admin'];
 $sesName = $_SESSION['fullname'];
 ?>
@@ -79,56 +97,18 @@ $sesName = $_SESSION['fullname'];
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-box"></i>
-                    <span class="text">Daftar Produk</span>
+                    <span class="text">Daftar Produk / Ubah Produk</span>
                 </div>
-                <table class="content-table">
-                    <thead>
-                    <tr>
-                        <td><p>No. </p></td>
-                        <td><p>ID Produk</p></td>
-                        <td><p>ID Admin</p></td>
-                        <td><p>Nama Produk</p></td>
-                        <td><p>Harga Produk</p></td>
-                        <td><p>Di Buat tanggal</p></td>
-                        <td><p>Di Ubah tanggal</p></td>
-                        <td>Ubah</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $query = "SELECT * FROM produk";
-                        $result = mysqli_query($koneksi, $query);
-                        $no = 1;
-                        while($row = mysqli_fetch_array($result)){
-                            $id_produk = $row['id_produk']; 
-                            $sesID = $row['id_admin']; 
-                            $nama = $row['nama_produk']; 
-                            $no_hp = $row['harga_produk']; 
-                            $jml = $row['created_at']; 
-                            $ttl = $row['updated_at'];
-                    ?>
-                    <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $id_produk; ?></td>
-                        <td><?php echo $sesID; ?></td>
-                        <td><?php echo $nama; ?></td>
-                        <td><?php echo $no_hp; ?></td>
-                        <td><?php echo $jml; ?></td>
-                        <td><?php echo $ttl; ?></td>
-                        <td>
-                            <a class="btn btn-animasi btn-color" href="editproduk.php?id_produk=<?php echo $row['id_produk'] ?>"><i class="uil uil-cog"></i><br></a>
-                            <br>
-                            <a class="btn btn-animasi btn-color" href="hapusstok.php?id_produk=<?php echo $row['id_produk']?>"><i class="uil uil-trash-alt"></i></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                    $no++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
                 <div>
-                    <a href="tambahproduk.php" class="btn btn-animasi btn-color">Tambahkan Produk <i class="uil uil-plus-circle"></i></a>
+                    <form action="editproduk.php" method="POST">
+                        <input type="hidden" name="id_produk" value="<?php echo $id_produk; ?>">
+                        <input type="hidden" name="id_admin" value="<?php echo $sesID; ?>">
+                        <h3>Nama Produk : <input type="text" name="nama_produk" value="<?php echo $nama; ?>"></h3>
+                        <h3>Harga : <input type="text" name="harga_produk" value="<?php echo $no_hp; ?>"></h3>
+                        <input type="hidden" name="created_at" value="<?php echo $jml; ?>">
+                        <input type="hidden" name="updated_at" value="<?php echo date('Y-m-d  h:i:s');?>">
+                        <button type="submit" class="btn btn-animasi btn-color" name="update">Ubah <i class="uil uil-cog"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -136,3 +116,4 @@ $sesName = $_SESSION['fullname'];
     <script src="script.js"></script>
 </body>
 </html>
+<?php } ?>

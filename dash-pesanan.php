@@ -70,12 +70,8 @@ $sesName = $_SESSION['fullname'];
     <section class="dashboard-body">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Cari...">
-            </div>
             <div>
-            <h3>Selamat Datang</h3><p><?php echo $sesName; ?></p>
+                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
             </div>
             <img src="icon/user.svg" alt="">
         </div>
@@ -125,7 +121,7 @@ $sesName = $_SESSION['fullname'];
                         <td>
                             <a class="btn btn-animasi btn-color" href="edit.php?id_pesanan=<?php echo $row['id_pesanan'] ?>"><i class="uil uil-check"></i></a>
                             <br>
-                            <a class="btn btn-animasi btn-color" href="hapus.php?id=<?php echo $row['id_pesanan']?>"><i class="uil uil-trash-alt"></i></i></a>
+                            <a class="btn btn-animasi btn-color" href="hapus.php?id_pesanan=<?php echo $row['id_pesanan']?>"><i class="uil uil-trash-alt"></i></i></a>
                         </td>
                     </tr>
                     <?php

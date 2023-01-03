@@ -73,13 +73,8 @@ $sesName = $_SESSION['fullname'];
     <section class="dashboard-body">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Cari...">
-            </div>
             <div>
-                <h3>Selamat Datang</h3>
-                <p><?php echo $sesName; ?></p>
+                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
             </div>
             <img src="icon/user.svg" alt="">
         </div>
@@ -89,62 +84,6 @@ $sesName = $_SESSION['fullname'];
                     <i class="uil uil-constructor"></i>
                     <span class="text">Karyawan</span>
                 </div>
-                <div class="boxes">
-                    <div class="box box1">
-                        <?php
-                        $query = "SELECT * FROM karyawan WHERE id_karyawan='KAR00000001'";
-                        $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $id_karyawan = $row['id_karyawan'];
-                            $nama = $row['nama_karyawan'];
-                            $alamat = $row['alamat_karyawan'];
-                            $no_hp = $row['no_hp_karyawan'];
-                            $sta = $row['status_karyawan'];
-                        ?>
-                            <i class="uil uil-constructor"></i>
-                            <span class="text">
-                                <a href="" style="text-decoration: none; color:black;"><h3><?php echo $nama; ?></h3></a>
-                            </span>
-                        <?php
-                        } ?>
-                    </div>
-                    <div class="box box1">
-                        <?php
-                        $query = "SELECT * FROM karyawan WHERE id_karyawan='KAR00000002'";
-                        $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $id_karyawan = $row['id_karyawan'];
-                            $nama = $row['nama_karyawan'];
-                            $alamat = $row['alamat_karyawan'];
-                            $no_hp = $row['no_hp_karyawan'];
-                            $jml = $row['status_karyawan'];
-                        ?>
-                            <i class="uil uil-constructor"></i>
-                            <span class="text">
-                                <a href="" style="text-decoration: none; color:black;"><h3><?php echo $nama; ?></h3></a>
-                            </span>
-                        <?php
-                        } ?>
-                    </div>
-                    <div class="box box1">
-                        <?php
-                        $query = "SELECT * FROM karyawan WHERE id_karyawan='KAR00000003'";
-                        $result = mysqli_query($koneksi, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $id_karyawan = $row['id_karyawan'];
-                            $nama = $row['nama_karyawan'];
-                            $alamat = $row['alamat_karyawan'];
-                            $no_hp = $row['no_hp_karyawan'];
-                            $jml = $row['status_karyawan'];
-                        ?>
-                            <i class="uil uil-constructor"></i>
-                            <span class="text">
-                                <a href="" style="text-decoration: none; color:black;"><h3><?php echo $nama; ?></h3></a>
-                            </span>
-                        <?php
-                        } ?>
-                    </div>
-                </div>
                 <table class="content-table">
                     <thead>
                     <tr>
@@ -153,6 +92,7 @@ $sesName = $_SESSION['fullname'];
                         <td><p>Nama Karyawan</p></td>
                         <td><p>Alamat Karyawan</p></td>
                         <td><p>Nomer Handphone Karyawan</p></td>
+                        <td><p>Edit</p></td>
                     </tr>
                     </thead>
                     <tbody>
@@ -165,7 +105,6 @@ $sesName = $_SESSION['fullname'];
                             $nama = $row['nama_karyawan']; 
                             $alamat = $row['alamat_karyawan']; 
                             $no_hp = $row['no_hp_karyawan']; 
-                            $sta = $row['status_karyawan']; 
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>
@@ -173,6 +112,11 @@ $sesName = $_SESSION['fullname'];
                         <td><?php echo $nama; ?></td>
                         <td><?php echo $alamat; ?></td>
                         <td><?php echo $no_hp; ?></td>
+                        <td>
+                        <a class="btn btn-animasi btn-color" href="editkaryawan.php?id_karyawan=<?php echo $row['id_karyawan'] ?>"><i class="uil uil-cog"></i><br></a>
+                            <br>
+                        <a class="btn btn-animasi btn-color" href="hapuskaryawan.php?id_karyawan=<?php echo $row['id_karyawan']?>"><i class="uil uil-trash-alt"></i></i></a>
+                        </td>
                     </tr>
                     <?php
                     $no++;

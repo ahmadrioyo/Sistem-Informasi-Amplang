@@ -70,12 +70,8 @@ $sesName = $_SESSION['fullname'];
     <section class="dashboard-body">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Cari...">
-            </div>
             <div>
-            <h3>Selamat Datang</h3><p><?php echo $sesName; ?></p>
+                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
             </div>
             <img src="icon/user.svg" alt="">
         </div>
@@ -127,7 +123,7 @@ $sesName = $_SESSION['fullname'];
                         </span>
                     </div>
                 </div>
-                <a href="unduh.php" class="btn btn-animasi btn-color">Unduh Laporan Pendapatan Hari ini. <i class="uil uil-file-bookmark-alt"></i></a>           
+                <a href="unduh.php" class="btn btn-animasi btn-color">Unduh Laporan Pendapatan.   <i class="uil uil-file-bookmark-alt"></i></a>           
 
             </div> 
         </div>

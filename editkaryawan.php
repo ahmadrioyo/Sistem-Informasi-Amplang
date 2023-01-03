@@ -1,10 +1,24 @@
 <?php
-require ("koneksi.php");
 session_start();
-
-if(!isset($_SESSION['id_admin'])){
-    header('Location: login.php');
-}
+require('koneksi.php');
+if( isset($_POST['update']) ){
+    $id_karyawan = $_POST['id_karyawan']; 
+    $nama = $_POST['nama_karyawan']; 
+    $no_hp = $_POST['alamat_karyawan']; 
+    $jml = $_POST['no_hp_karyawan'];
+    $query = "UPDATE karyawan SET 
+    nama_karyawan ='$nama', alamat_karyawan ='$no_hp', no_hp_karyawan ='$jml' WHERE id_karyawan ='$id_karyawan'";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: dash-karyawan.php');
+    }
+$id_karyawan = $_GET['id_karyawan'];  
+$query = "SELECT * FROM karyawan WHERE id_karyawan='$id_karyawan'";
+$result = mysqli_query($koneksi, $query)or die(mysqli_errno($koneksi));
+while ($row = mysqli_fetch_array($result)) {
+    $id_karyawan = $row['id_karyawan']; 
+    $nama = $row['nama_karyawan']; 
+    $no_hp = $row['alamat_karyawan']; 
+    $jml = $row['no_hp_karyawan']; 
 $sesID = $_SESSION['id_admin'];
 $sesName = $_SESSION['fullname'];
 ?>
@@ -69,66 +83,30 @@ $sesName = $_SESSION['fullname'];
     </nav>
     <section class="dashboard-body">
         <div class="top">
-        <i class="uil uil-bars sidebar-toggle"></i>
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Cari...">
+            </div>
             <div>
-                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
+            <h3>Selamat Datang</h3><p><?php echo $sesName; ?></p>
             </div>
             <img src="icon/user.svg" alt="">
         </div>
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <i class="uil uil-box"></i>
-                    <span class="text">Daftar Produk</span>
+                    <i class="uil uil-constructor"></i>
+                    <span class="text">Karyawan / Edit Data Karyawan</span>
                 </div>
-                <table class="content-table">
-                    <thead>
-                    <tr>
-                        <td><p>No. </p></td>
-                        <td><p>ID Produk</p></td>
-                        <td><p>ID Admin</p></td>
-                        <td><p>Nama Produk</p></td>
-                        <td><p>Harga Produk</p></td>
-                        <td><p>Di Buat tanggal</p></td>
-                        <td><p>Di Ubah tanggal</p></td>
-                        <td>Ubah</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        $query = "SELECT * FROM produk";
-                        $result = mysqli_query($koneksi, $query);
-                        $no = 1;
-                        while($row = mysqli_fetch_array($result)){
-                            $id_produk = $row['id_produk']; 
-                            $sesID = $row['id_admin']; 
-                            $nama = $row['nama_produk']; 
-                            $no_hp = $row['harga_produk']; 
-                            $jml = $row['created_at']; 
-                            $ttl = $row['updated_at'];
-                    ?>
-                    <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $id_produk; ?></td>
-                        <td><?php echo $sesID; ?></td>
-                        <td><?php echo $nama; ?></td>
-                        <td><?php echo $no_hp; ?></td>
-                        <td><?php echo $jml; ?></td>
-                        <td><?php echo $ttl; ?></td>
-                        <td>
-                            <a class="btn btn-animasi btn-color" href="editproduk.php?id_produk=<?php echo $row['id_produk'] ?>"><i class="uil uil-cog"></i><br></a>
-                            <br>
-                            <a class="btn btn-animasi btn-color" href="hapusstok.php?id_produk=<?php echo $row['id_produk']?>"><i class="uil uil-trash-alt"></i></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                    $no++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
                 <div>
-                    <a href="tambahproduk.php" class="btn btn-animasi btn-color">Tambahkan Produk <i class="uil uil-plus-circle"></i></a>
+                    <form action="editkaryawan.php" method="POST">
+                        <input type="hidden" name="id_karyawan" value="<?php echo $id_karyawan; ?>">
+                        <h3>Nama Karyawan : <input type="text" name="nama_karyawan" value="<?php echo $nama; ?>"></h3>
+                        <h3>Alamat : <input type="text" name="alamat_karyawan" value="<?php echo $no_hp; ?>"></h3>
+                        <h3>Nomor Handphone Karyawan : <input type="text" name="no_hp_karyawan" value="<?php echo $jml; ?>"></h3>
+                        <button type="submit" class="btn btn-animasi btn-color" name="update">Ubah <i class="uil uil-cog"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -136,3 +114,4 @@ $sesName = $_SESSION['fullname'];
     <script src="script.js"></script>
 </body>
 </html>
+<?php } ?>

@@ -1,10 +1,22 @@
 <?php
 session_start();
 require('koneksi.php');
+if( isset($_POST['submit']) ){
+    $id_pesanan = $_POST['id_pesanan']; 
+    $sesID = $_POST['id_admin']; 
+    $nama = $_POST['nama_pembeli']; 
+    $no_hp = $_POST['no_hp_pembeli']; 
+    $jml = $_POST['jumlah']; 
+    $ttl = $_POST['grand_total'];
+    $st = $_POST['status']; 
+    $query = "UPDATE pesanan SET 
+    id_admin ='$sesID', nama_pembeli ='$nama', no_hp_pembeli ='$no_hp', jumlah =$jml ,grand_total =$ttl , status_bayar ='$st' WHERE id_pesanan ='$id_pesanan'";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: dash-pesanan.php');
+    }
 $id_pesanan = $_GET['id_pesanan'];  
 $query = "SELECT * FROM pesanan WHERE id_pesanan='$id_pesanan'";
 $result = mysqli_query($koneksi, $query)or die(mysqli_errno($koneksi));
-
 while ($row = mysqli_fetch_array($result)) {
     $id_pesanan = $row['id_pesanan']; 
     $sesID = $row['id_admin']; 
@@ -13,22 +25,8 @@ while ($row = mysqli_fetch_array($result)) {
     $jml = $row['jumlah']; 
     $ttl = $row['grand_total'];
     $st = $row['status_bayar']; 
-}
-if( isset($_POST['submit']) ){
-    $id_pesanan = $row['id_pesanan']; 
-    $sesID = $row['id_admin']; 
-    $nama = $row['nama_pembeli']; 
-    $no_hp = $row['no_hp_pembeli']; 
-    $jml = $row['jumlah']; 
-    $ttl = $row['grand_total'];
-    $st = $row['status']; 
-    $query = "UPDATE pesanan SET 
-    id_admin ='$sesID', nama_pembeli ='$nama', no_hp_pembeli ='$no_hp', jumlah =$jml ,grand_total =$ttl , status_bayar ='$st' WHERE id_pesanan ='$id_pesanan'";
-    $result = mysqli_query($koneksi, $query);
-    header('Location: dash-pesanan.php');
-}
-$sesID = $_SESSION['id_admin'];
-$sesName = $_SESSION['fullname'];
+    $sesID = $_SESSION['id_admin'];
+    $sesName = $_SESSION['fullname'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,15 +89,11 @@ $sesName = $_SESSION['fullname'];
     </nav>
     <section class="dashboard-body">
         <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Cari...">
-            </div>
+        <i class="uil uil-bars sidebar-toggle"></i>
             <div>
-            <h3>Selamat Datang</h3><p><?php echo $sesName; ?></p>
+                <center><h3>Selamat Datang</h3><p><?php echo $sesName; ?></p></center>
             </div>
-            <img src="icon/user.svg" alt="">        
+            <img src="icon/user.svg" alt=""> 
             </div>
         <div class="dash-content">
             <div class="overview">
@@ -109,35 +103,34 @@ $sesName = $_SESSION['fullname'];
                 </div>
                 <form action="edit.php" method="POST" name="autoSumForm" >
                     <div>
-                        <p><input type="hidden" name="id_pesanan" value="<?php echo $id_pesanan; ?>" readonly ></p>
+                        <p><input type="hidden" name="id_pesanan"  value="<?php echo $id_pesanan; ?>" readonly ></p>
                     </div>
                     <div>
                         <label for="id_admin"><h3>ID Admin :</h3></label>
-                        <input type="text" name="id_admin" required value="<?php echo $sesID; ?>">
+                        <input type="text" name="id_admin" value="<?php echo $sesID; ?>" readonly>
                     </div>
                     <div>
                         <label for="nama_pembeli"><h3>Nama Pembeli :</h3></label>
-                        <input type="text" name="nama_pembeli" required value="<?php echo $nama; ?>" >
+                        <input type="text" name="nama_pembeli" value="<?php echo $nama; ?>" >
                     </div>
                     <div>
                         <label for="no_hp_pembeli"><h3>No Handphone Pembeli :</h3></label>
-                        <input type="text" name="no_hp_pembeli" required value="<?php echo $no_hp; ?>" >
+                        <input type="text" name="no_hp_pembeli" value="<?php echo $no_hp; ?>" >
                     </div>
                     <div>
                         <label for="jumlah"><h3>Jumlah Barang :</h3></label>
-                        <input type="text" name="jumlah" required value="<?php echo $jml; ?>" onFocus="startCalc();" onBlur="stopCalc();">
+                        <input type="text" name="jumlah" value="<?php echo $jml; ?>" onFocus="startCalc();" onBlur="stopCalc();">
                     </div>
                     <div>
                         <label for="grand_total"><h3>Total Harga</h3></label>
-                        <input type="text" name="grand_total" required value="<?php echo $ttl; ?>"  readonly>
+                        <input type="text" name="grand_total" value="<?php echo $ttl; ?>"  readonly>
                     </div>
                     <div>
                         <label for="status"><h3>Status</h3></label>
                         <select name="status" id="status" style="width: 100%; height: 40px" >
-                            <option required value=""><?php echo $st; ?></option>
-                            <option required value="DP">DP</option>
-                            <option required value="Belum Lunas">Belum Lunas</option>
-                            <option required value="Lunas">Lunas</option>
+                            <option value=""><?php echo $st; ?></option>
+                            <option value="Belum Lunas">Belum Lunas</option>
+                            <option value="Lunas">Lunas</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-animasi btn-color" name="submit">Konfirmasi <i class="uil uil-check"></i></button>
@@ -158,3 +151,4 @@ $sesName = $_SESSION['fullname'];
     </script>
 </body>
 </html>
+<?php } ?>

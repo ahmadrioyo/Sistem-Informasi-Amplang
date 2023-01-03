@@ -48,8 +48,8 @@ $kodeBarang = $huruf . sprintf("%08s", $urutan);
                             <input type="text" placeholder="No. Handphone" name="no" required>
                             <input type="text" placeholder="Jumlah / kg" name="jumlah" onFocus="startCalc();" onBlur="stopCalc();" required>
                             <p>Rp. <input type="text" name="total" value="0" readonly required></p>
-                        <button type="submit" name="pesan">Pesan</button>
-                        
+                            <button type="submit" name="pesan">Pesan</button>
+                            <script>alert('Pemesan anda telah disimpan, untuk pembayaran harap konfirmasi kepada admin!');</script>
                         </form>
                     </div>
                 </div>
