@@ -53,10 +53,13 @@ if( isset($_POST['masuk'])){
                 <h1>Masuk</h1>
                 <hr>
                 <p>UD. RAR Crackers</p>
+                <br>
                 <label for="email">Email</label>
                 <input type="text" placeholder="ahmad@polije.com" name="email" id="email">
                 <label for="pass">Kata Sandi</label>
                 <input type="password" placeholder="Kata Sandi" name="pass" id="pass">    
+                <br>
+                <br>
                 <button type="submit" class="btn btn-animasi btn-color" name="masuk"  >Masuk</button>
             </form>
         </div>
