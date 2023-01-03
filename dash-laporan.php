@@ -35,7 +35,7 @@ $sesName = $_SESSION['fullname'];
                     <span class="link-name">Beranda</span>
                 </a></li>
                 <li><a href="dash-pesanan.php">
-                    <i class="uil uil-files-landscapes-alt"></i>
+                    <i class="uil uil-shopping-bag"></i>
                     <span class="link-name">Pesanan</span>
                 </a></li>
                 <li><a href="dash-stok.php">
@@ -88,7 +88,7 @@ $sesName = $_SESSION['fullname'];
                 <div class="boxes">
                 <div class="box box1">  
                         <i class="uil uil-wallet"></i>
-                        <a href="" style="text-decoration: none; color:black;"><span class="text">Total Pendapatan</span></a>
+                        <a href="dash-laporan-1.php" style="text-decoration: none; color:black;"><span class="text">Total Pendapatan</span></a>
                         <span class="number">
                             Rp. <?php
                             $query = "SELECT SUM(grand_total) FROM pesanan;";
@@ -127,7 +127,9 @@ $sesName = $_SESSION['fullname'];
                         </span>
                     </div>
                 </div>
-            </div>            
+                <a href="unduh.php" class="btn btn-animasi btn-color">Unduh Laporan Pendapatan Hari ini. <i class="uil uil-file-bookmark-alt"></i></a>           
+
+            </div> 
         </div>
     </section>
     <script src="script.js"></script>

@@ -35,7 +35,7 @@ $sesName = $_SESSION['fullname'];
                     <span class="link-name">Beranda</span>
                 </a></li>
                 <li><a href="dash-pesanan.php">
-                    <i class="uil uil-files-landscapes-alt"></i>
+                    <i class="uil uil-shopping-bag"></i>
                     <span class="link-name">Pesanan</span>
                 </a></li>
                 <li><a href="dash-stok.php">

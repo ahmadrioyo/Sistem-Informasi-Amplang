@@ -5,6 +5,23 @@ session_start();
 if (!isset($_SESSION['id_admin'])) {
     header('Location: login.php');
 }
+$query = mysqli_query($koneksi, "SELECT max(id_pesanan) as kodeTerbesar FROM pesanan");
+$data = mysqli_fetch_array($query);
+$kodeBarang = $data['kodeTerbesar'];
+$urutan = (int) substr($kodeBarang, 8, 8);
+$urutan++;
+$huruf = "KAR   ";
+$kodeBarang = $huruf . sprintf("%08s", $urutan);
+if(isset($_POST['submit'])){
+    $id = $_POST['id'];
+    $userName = $_POST['nama'];
+    $amt = $_POST['alamat'];
+    $userNo = $_POST['no_hp'];
+
+    $query = "INSERT INTO `karyawan` VALUES ('$id', '$userName', $amt ,'$userNo')";
+    $result = mysqli_query($koneksi, $query);
+    header('Location: dash-karyawan.php');
+}
 $sesID = $_SESSION['id_admin'];
 $sesName = $_SESSION['fullname'];
 ?>
@@ -87,7 +104,7 @@ $sesName = $_SESSION['fullname'];
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-constructor"></i>
-                    <span class="text">Karyawan</span>
+                    <span class="text">Karyawan / Tambah Karyawan</span>
                 </div>
                 <div class="boxes">
                     <div class="box box1">
@@ -99,7 +116,6 @@ $sesName = $_SESSION['fullname'];
                             $nama = $row['nama_karyawan'];
                             $alamat = $row['alamat_karyawan'];
                             $no_hp = $row['no_hp_karyawan'];
-                            $sta = $row['status_karyawan'];
                         ?>
                             <i class="uil uil-constructor"></i>
                             <span class="text">
@@ -117,7 +133,6 @@ $sesName = $_SESSION['fullname'];
                             $nama = $row['nama_karyawan'];
                             $alamat = $row['alamat_karyawan'];
                             $no_hp = $row['no_hp_karyawan'];
-                            $jml = $row['status_karyawan'];
                         ?>
                             <i class="uil uil-constructor"></i>
                             <span class="text">
@@ -135,7 +150,6 @@ $sesName = $_SESSION['fullname'];
                             $nama = $row['nama_karyawan'];
                             $alamat = $row['alamat_karyawan'];
                             $no_hp = $row['no_hp_karyawan'];
-                            $jml = $row['status_karyawan'];
                         ?>
                             <i class="uil uil-constructor"></i>
                             <span class="text">
@@ -165,7 +179,6 @@ $sesName = $_SESSION['fullname'];
                             $nama = $row['nama_karyawan']; 
                             $alamat = $row['alamat_karyawan']; 
                             $no_hp = $row['no_hp_karyawan']; 
-                            $sta = $row['status_karyawan']; 
                     ?>
                     <tr>
                         <td><?php echo $no; ?></td>
@@ -180,7 +193,13 @@ $sesName = $_SESSION['fullname'];
                     ?>
                     </tbody>
                 </table>
-                <a class="btn btn-animasi btn-color" href="tambahkaryawan.php">Tambahkan Karyawan <i class="uil uil-plus-circle"></i></a>
+                <form action="">
+                    <input type="hidden" value="<?php echo $kodeBarang ?>" name="id" id="">
+                    <h3>Nama Karyawan <input type="text" name="nama" required></h3>
+                    <h3>Alamat Karyawan <input type="text" name="alamat" required></h3>
+                    <h3>Nomor Handphone Karyawan <input type="text" name="no_hp" required></h3>
+                    <button class="btn btn-animasi btn-color" type="submit" name="submit">Tambah Karyawan  <i class="uil uil-user-plus"></i></button>
+                </form>
             </div>
         </div>
     </section>
