@@ -2,6 +2,7 @@
 session_start();
 require ('koneksi.php');
 $sesID = $_SESSION['id_admin'];
+$sesName = $_SESSION['fullname'];
 $tanggal = date('Y-m-d');
 ?>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ $tanggal = date('Y-m-d');
 	<title>UD. RAR Crackers - Unduh Laporan Pendapatan</title>
 </head>
 <body>
-	<p>admin : <?php echo $sesID; ?></p>
+	<p>admin : <?php echo $sesName; ?></p>
 	<center><img src="icon/batik mega mendung3.png" class="rounded" width="80px" alt=""></center>
 	<br>
 	<center>
@@ -33,8 +34,8 @@ $tanggal = date('Y-m-d');
 		<tr>
 			<td><p>No. </p></td>
 			<td><p>Nama</p></td>
-			<td><p>No Handphone Pembeli</p></td>
-			<td><p>Tanggal</p></td>
+			<td><p>Nomor Handphone Pembeli</p></td>
+			<td><p>Tanggal Pesanan</p></td>
 			<td><p>Jumlah</p></td>
 			<td><p>Harga Produk</p></td>
 			<td><p>Total Harga</p></td>

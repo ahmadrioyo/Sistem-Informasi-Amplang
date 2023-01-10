@@ -96,7 +96,7 @@ $st = $row['status_bayar'];
                 <div class="boxes">
                     <div class="box box1">  
                         <i class="uil uil-wallet"></i>
-                        <span class="text">Pendapatan Hari ini</span>
+                        <span class="text">Jumlah Pendapatan</span>
                         <span class="number">
                             Rp. <?php
                             $query = "SELECT SUM(grand_total) FROM pesanan WHERE status_bayar='Lunas';";

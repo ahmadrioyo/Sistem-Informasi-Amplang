@@ -49,7 +49,6 @@ $kodeBarang = $huruf . sprintf("%08s", $urutan);
                             <input type="text" placeholder="Jumlah / kg" name="jumlah" onFocus="startCalc();" onBlur="stopCalc();" required>
                             <p>Rp. <input type="text" name="total" value="0" readonly required></p>
                             <button type="submit" name="pesan">Pesan</button>
-                            <script>alert('Pemesan anda telah disimpan, untuk pembayaran harap konfirmasi kepada admin!');</script>
                         </form>
                     </div>
                 </div>
@@ -116,7 +115,7 @@ $kodeBarang = $huruf . sprintf("%08s", $urutan);
     <section id="saran" class="saran-container">
         <div class="saran-value">
             <h1>Hubungi Kami</h1>
-            <form action="index.php" method="POST">
+            <form action="hubkami.php" method="POST">
                 <div class="form-group">
                     <input type="text" placeholder="Nama Lengkap" name="nama" required>
                 </div>
